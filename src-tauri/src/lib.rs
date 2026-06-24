@@ -1,4 +1,21 @@
+use tauri::{Manager, WindowEvent};
 use tauri_plugin_sql::{Migration, MigrationKind};
+
+fn restore_main_window<R: tauri::Runtime>(app: &tauri::AppHandle<R>) {
+    if let Some(window) = app.get_webview_window("main") {
+        if let Err(error) = window.show() {
+            eprintln!("failed to show window: {error}");
+        }
+
+        if let Err(error) = window.unminimize() {
+            eprintln!("failed to unminimize window: {error}");
+        }
+
+        if let Err(error) = window.set_focus() {
+            eprintln!("failed to focus window: {error}");
+        }
+    }
+}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -63,6 +80,21 @@ pub fn run() {
                 .add_migrations("sqlite:learning-debt.db", migrations)
                 .build(),
         )
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .on_window_event(|window, event| {
+            if let WindowEvent::CloseRequested { api, .. } = event {
+                api.prevent_close();
+
+                if let Err(error) = window.hide() {
+                    eprintln!("failed to hide window: {error}");
+                }
+            }
+        })
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application")
+        .run(|app, event| {
+            #[cfg(target_os = "macos")]
+            if let tauri::RunEvent::Reopen { .. } = event {
+                restore_main_window(app);
+            }
+        });
 }
