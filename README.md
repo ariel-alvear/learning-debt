@@ -41,7 +41,21 @@ https://v2.tauri.app/start/prerequisites/
 
 ## Setup
 
-Install JavaScript dependencies:
+Run the onboarding script:
+
+```sh
+npm run setup
+```
+
+The setup script checks the local toolchain, installs JavaScript dependencies, and runs the frontend tests.
+
+Then start the desktop app:
+
+```sh
+npm run tauri dev
+```
+
+Manual dependency install:
 
 ```sh
 npm install
@@ -120,6 +134,12 @@ Database files are intentionally ignored by Git.
 
 ### macOS
 
+- Run the setup script:
+
+```sh
+npm run setup
+```
+
 - Install Xcode Command Line Tools:
 
 ```sh
@@ -134,17 +154,36 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 
 ### Windows
 
+- Run the setup script:
+
+```sh
+npm run setup
+```
+
 - Install Node.js 18+.
 - Install Rust using rustup.
 - Install the Microsoft C++ Build Tools required by Tauri.
+- Ensure WebView2 is available.
 - Run commands from PowerShell, Command Prompt, or a terminal configured for Rust.
 
 ### Linux
+
+- Run the setup script:
+
+```sh
+npm run setup
+```
 
 - Install Node.js 18+.
 - Install Rust using rustup.
 - Install the WebKitGTK and build dependencies required by Tauri for your distribution.
 - Package names vary by distro, so use the Tauri prerequisites page as the source of truth.
+
+Debian/Ubuntu example:
+
+```sh
+sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+```
 
 ## Current Limitations
 
