@@ -1,45 +1,99 @@
 # Learning Debt
 
-Learning Debt is a local-first desktop app for capturing unanswered questions and topics before they disappear from working memory.
+**Capture learning debt before you forget it.**
 
-This repository is an MVP built for local testing. It is not a polished product landing page yet.
+Learning Debt is a local-first desktop app that helps developers capture unanswered technical questions and turn them into lessons learned.
 
-## Current MVP Features
+![Tauri](https://img.shields.io/badge/Tauri-v2-24c8db)
+![React](https://img.shields.io/badge/React-18-61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6)
+![SQLite](https://img.shields.io/badge/SQLite-local-003b57)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Tests](https://img.shields.io/badge/Tests-Vitest-6e9f18)
 
-- Capture a learning debt item with:
-  - title
-  - kind: `question` or `topic`
-  - learning impact: 1-5
-- Persist items locally in SQLite.
-- View items grouped as Open Debt and Resolved Debt.
-- Open a detail modal for each item.
-- Resolve an item with a required Lesson Learned.
-- Delete an item after confirmation.
-- Run a small frontend test suite.
+## What is Learning Debt?
+
+While building software, developers often postpone questions: Why does this API behave that way? What should I understand better about this pattern? Those unanswered questions become learning debt.
+
+Learning Debt helps you capture those questions quickly, revisit them later, and resolve them with a short lesson learned.
+
+## Why use it?
+
+- Capture technical questions quickly.
+- Prioritize by learning impact.
+- Track open learning debt.
+- Resolve questions into lessons learned.
+- Store everything locally with SQLite.
+- Work fully offline.
+
+## How it works
+
+### Capture
+
+Capture a question or topic.
+
+![Empty capture screen](screenshots/01-capture-empty.png)
+
+### Track
+
+Track open learning debt.
+
+![Open debt item created](screenshots/02-open-debt-created.png)
+
+### Resolve
+
+Open a debt item and resolve it.
+
+![Item detail modal](screenshots/03-item-detail.png)
+
+Write a short lesson learned before resolving.
+
+![Resolve debt with lesson learned](screenshots/04-resolve-lesson.png)
+
+### Learn
+
+Save a lesson learned for future reference.
+
+![Resolved debt showing lesson preview](screenshots/05-resolved-preview.png)
+
+Open and resolved debt stay visible in separate sections.
+
+![Open and resolved debt example](screenshots/06-open-and-resolved.png)
+
+## Features
+
+- Local-first desktop app.
+- SQLite persistence.
+- Open / Resolved lifecycle.
+- Lesson Learned when resolving debt.
+- Learning Impact rating.
+- Delete items.
+- Tests with Vitest and React Testing Library.
 
 ## Tech Stack
 
 - Tauri v2
 - React
 - TypeScript
-- Vite
-- SQLite through the Tauri SQL plugin
+- SQLite
 - Vitest
 - React Testing Library
 
-## Requirements
+## Getting Started
+
+### Requirements
 
 - Node.js 18+ and npm
 - Rust and Cargo
 - Tauri system dependencies for your operating system
 
-Check the official Tauri prerequisites for your platform:
+Official Tauri prerequisites:
 
 ```text
 https://v2.tauri.app/start/prerequisites/
 ```
 
-## Setup
+### Setup
 
 Run the onboarding script:
 
@@ -47,58 +101,29 @@ Run the onboarding script:
 npm run setup
 ```
 
-The setup script checks the local toolchain, installs JavaScript dependencies, and runs the frontend tests.
+The setup script checks your local toolchain, installs JavaScript dependencies, and runs the frontend tests.
 
-Then start the desktop app:
+### Run locally
+
+Start the desktop app:
 
 ```sh
 npm run tauri dev
 ```
 
-Manual dependency install:
-
-```sh
-npm install
-```
-
-Verify Rust/Cargo is available:
-
-```sh
-cargo --version
-rustc --version
-```
-
-## Development Commands
-
-Run the web UI only:
+Run only the web UI:
 
 ```sh
 npm run dev
 ```
 
-Run the desktop app:
-
-```sh
-npm run tauri dev
-```
-
-## Tests
-
-Run the frontend test suite:
+### Run tests
 
 ```sh
 npm test
 ```
 
-Run tests in watch mode:
-
-```sh
-npm run test:watch
-```
-
-The current tests mock database calls and focus on React behavior. They do not test Tauri desktop APIs directly.
-
-## Build Commands
+### Build
 
 Build the frontend:
 
@@ -114,15 +139,15 @@ npm run tauri build
 
 ## Local Data
 
-Learning Debt is local-first. Captured items are stored in SQLite through the Tauri SQL plugin.
+Learning Debt stores captured items locally in SQLite through the Tauri SQL plugin.
 
-The database name is:
+Database name:
 
 ```text
 learning-debt.db
 ```
 
-On macOS during development, it is stored at:
+On macOS during development, the database is stored at:
 
 ```sh
 ~/Library/Application Support/com.learningdebt.app/learning-debt.db
@@ -130,52 +155,32 @@ On macOS during development, it is stored at:
 
 Database files are intentionally ignored by Git.
 
-## Platform Notes
+## Cross-platform testing
+
+Learning Debt is intended to work on macOS, Windows, and Linux.
+
+macOS has been tested during development. Windows and Linux feedback is welcome. If setup fails on your platform, please open an issue or pull request with the OS version, command output, and any missing system dependencies.
 
 ### macOS
 
-- Run the setup script:
-
-```sh
-npm run setup
-```
-
-- Install Xcode Command Line Tools:
+- Install Xcode Command Line Tools if the Tauri build fails:
 
 ```sh
 xcode-select --install
 ```
 
-- Install Rust with rustup if `cargo` is missing:
-
-```sh
-curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-```
-
 ### Windows
 
-- Run the setup script:
-
-```sh
-npm run setup
-```
-
 - Install Node.js 18+.
-- Install Rust using rustup.
-- Install the Microsoft C++ Build Tools required by Tauri.
+- Install Rust with rustup.
+- Install Microsoft C++ Build Tools.
 - Ensure WebView2 is available.
 - Run commands from PowerShell, Command Prompt, or a terminal configured for Rust.
 
 ### Linux
 
-- Run the setup script:
-
-```sh
-npm run setup
-```
-
 - Install Node.js 18+.
-- Install Rust using rustup.
+- Install Rust with rustup.
 - Install the WebKitGTK and build dependencies required by Tauri for your distribution.
 - Package names vary by distro, so use the Tauri prerequisites page as the source of truth.
 
@@ -192,15 +197,19 @@ sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev
 - No cloud backend.
 - No search or filters.
 - No edit flow for existing items.
-- No archive/trash recovery.
+- No archive or trash recovery.
 - No CI or release automation yet.
-- Tests currently cover only core React behavior, not real SQLite or Tauri desktop integration.
+- Tests currently cover core React behavior, not real SQLite or Tauri desktop integration.
 
 ## Roadmap
 
-- Add broader tests for database behavior.
-- Add Tauri-focused integration or smoke tests.
-- Improve keyboard-first capture flow.
-- Add a dedicated reflection/dashboard mode.
-- Add export/import for local data.
-- Prepare signed builds and release packaging.
+- Windows compatibility testing.
+- Linux compatibility testing.
+- Global shortcut.
+- Reflection dashboard.
+- GitHub Actions builds.
+- Release artifacts.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
