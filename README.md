@@ -1,74 +1,77 @@
 # Learning Debt
 
-**Capture learning debt before you forget it.**
+**Capture unanswered questions before you forget them.**
 
-Learning Debt is a local-first desktop app that helps developers capture unanswered technical questions and turn them into lessons learned.
+Learning Debt is a local-first desktop app for developers to capture unanswered technical questions, track open learning debt, and turn resolved questions into lessons learned.
 
+![Local-first](https://img.shields.io/badge/Local--first-yes-202124)
+![Offline](https://img.shields.io/badge/Offline-yes-202124)
+![SQLite](https://img.shields.io/badge/SQLite-local-003b57)
 ![Tauri](https://img.shields.io/badge/Tauri-v2-24c8db)
 ![React](https://img.shields.io/badge/React-18-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6)
-![SQLite](https://img.shields.io/badge/SQLite-local-003b57)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Tests](https://img.shields.io/badge/Tests-Vitest-6e9f18)
 
+## Why I built this
+
+While building software, I kept running into technical questions I did not have time to answer immediately.
+I would open more browser tabs, save links, or tell myself I would come back later.
+Most of those questions were eventually forgotten.
+
+I built Learning Debt to capture unanswered questions without breaking my flow, revisit them later, and turn them into lessons learned.
+The goal is not to remember everything. It is to make sure the important questions do not get lost.
+
 ## What is Learning Debt?
 
-While building software, developers often postpone questions: Why does this API behave that way? What should I understand better about this pattern? Those unanswered questions become learning debt.
+While building software we constantly postpone technical questions.
+Most of them disappear forever.
 
-Learning Debt helps you capture those questions quickly, revisit them later, and resolve them with a short lesson learned.
-
-## Why use it?
-
-- Capture technical questions quickly.
-- Prioritize by learning impact.
-- Track open learning debt.
-- Resolve questions into lessons learned.
-- Store everything locally with SQLite.
-- Work fully offline.
-
-## How it works
-
-### Capture
-
-Capture a question or topic.
-
-![Empty capture screen](screenshots/01-capture-empty.png)
-
-### Track
-
-Track open learning debt.
-
-![Open debt item created](screenshots/02-open-debt-created.png)
-
-### Resolve
-
-Open a debt item and resolve it.
-
-![Item detail modal](screenshots/03-item-detail.png)
-
-Write a short lesson learned before resolving.
-
-![Resolve debt with lesson learned](screenshots/04-resolve-lesson.png)
-
-### Learn
-
-Save a lesson learned for future reference.
-
-![Resolved debt showing lesson preview](screenshots/05-resolved-preview.png)
-
-Open and resolved debt stay visible in separate sections.
-
-![Open and resolved debt example](screenshots/06-open-and-resolved.png)
+Learning Debt lets you capture those questions while you're in flow, revisit them later, and convert them into lessons learned.
 
 ## Features
 
-- Local-first desktop app.
-- SQLite persistence.
-- Open / Resolved lifecycle.
-- Lesson Learned when resolving debt.
-- Learning Impact rating.
-- Delete items.
-- Tests with Vitest and React Testing Library.
+- Capture questions or learning topics.
+- Prioritize by learning impact.
+- Track open learning debt.
+- Resolve questions with a lesson learned.
+- Local-first SQLite storage.
+- Offline by default.
+- Cross-platform desktop app.
+
+## How it works
+
+### 1. Capture
+
+Capture a question or topic before it disappears from working memory.
+
+<p align="center">
+  <img src="screenshots/01-capture-empty.png" alt="Empty capture screen" width="760">
+</p>
+
+### 2. Track
+
+Keep open learning debt visible and lightweight.
+
+<p align="center">
+  <img src="screenshots/02-open-debt-created.png" alt="Open debt item created" width="760">
+</p>
+
+### 3. Resolve
+
+Open an item and summarize the idea you learned.
+
+<p align="center">
+  <img src="screenshots/04-resolve-lesson.png" alt="Resolve debt with lesson learned" width="760">
+</p>
+
+### 4. Learn
+
+Resolved debt becomes a small local archive of lessons learned.
+
+<p align="center">
+  <img src="screenshots/06-open-and-resolved.png" alt="Open and resolved debt example" width="760">
+</p>
 
 ## Tech Stack
 
@@ -203,12 +206,15 @@ sudo apt install libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev
 
 ## Roadmap
 
-- Windows compatibility testing.
-- Linux compatibility testing.
-- Global shortcut.
-- Reflection dashboard.
-- GitHub Actions builds.
-- Release artifacts.
+- [ ] Windows compatibility testing.
+- [ ] Linux compatibility testing.
+- [ ] Global shortcut.
+- [ ] Reflection dashboard.
+- [ ] GitHub Actions builds.
+
+## Contributing
+
+Issues and pull requests are welcome. For platform setup problems, please include your OS version, the command you ran, and the relevant terminal output.
 
 ## License
 
