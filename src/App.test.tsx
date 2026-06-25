@@ -79,6 +79,25 @@ describe("App", () => {
     expect(input).toHaveValue("Understand SQLite migrations");
   });
 
+  it("shows a validation message when capturing without a title", async () => {
+    const user = userEvent.setup();
+    renderApp();
+
+    await screen.findByLabelText("Learning Debt");
+    await user.click(screen.getByRole("button", { name: "Capture Debt" }));
+
+    expect(
+      screen.getByText("Add a learning debt before capturing."),
+    ).toBeInTheDocument();
+    expect(dbMocks.insertLearningItem).not.toHaveBeenCalled();
+
+    await user.type(screen.getByLabelText("Learning Debt"), "Understand indexes");
+
+    expect(
+      screen.queryByText("Add a learning debt before capturing."),
+    ).not.toBeInTheDocument();
+  });
+
   it("lets the user switch between Question and Topic", async () => {
     const user = userEvent.setup();
     renderApp();

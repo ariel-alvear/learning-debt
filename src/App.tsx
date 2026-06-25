@@ -10,6 +10,7 @@ import {
 
 export default function App() {
   const [title, setTitle] = useState("");
+  const [titleError, setTitleError] = useState("");
   const [kind, setKind] = useState<ItemKind>("question");
   const [learningImpact, setLearningImpact] = useState(3);
   const [items, setItems] = useState<LearningItem[]>([]);
@@ -43,6 +44,7 @@ export default function App() {
     const trimmedTitle = title.trim();
 
     if (!trimmedTitle) {
+      setTitleError("Add a learning debt before capturing.");
       return;
     }
 
@@ -55,6 +57,7 @@ export default function App() {
 
       setItems((currentItems) => [savedItem, ...currentItems]);
       setTitle("");
+      setTitleError("");
       setKind("question");
       setLearningImpact(3);
     } catch (error) {
@@ -234,11 +237,21 @@ export default function App() {
       <form className="capture-form" onSubmit={handleSubmit}>
         <input
           aria-label="Learning Debt"
+          aria-describedby={titleError ? "title-error" : undefined}
+          aria-invalid={titleError ? "true" : "false"}
           className="debt-input"
           value={title}
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={(event) => {
+            setTitle(event.target.value);
+            setTitleError("");
+          }}
           placeholder="What do you want to understand better?"
         />
+        {titleError ? (
+          <p className="form-error" id="title-error">
+            {titleError}
+          </p>
+        ) : null}
 
         <fieldset className="kind-selector">
           <legend>Kind</legend>

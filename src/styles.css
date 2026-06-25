@@ -82,6 +82,12 @@ textarea {
   font-size: 0.92rem;
 }
 
+.form-error {
+  color: #9f2d2d;
+  font-size: 0.76rem;
+  margin: -0.35rem 0 0;
+}
+
 fieldset {
   display: flex;
   align-items: center;
